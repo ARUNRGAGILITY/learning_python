@@ -1,5 +1,4 @@
-Certainly! Here are the answers for the 25 while loop exercises:
-
+Python While Loop Exercises
 1. Print numbers from 1 to 10 using a while loop:
    ```python
    num = 1
