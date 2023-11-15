@@ -231,9 +231,7 @@ Certainly! Here are the answers for the 25 while loop exercises:
 
 20. Remove duplicates from a list using a while loop:
     ```python
-    numbers = [1, 2, 2, 
-
-3, 4, 4, 5]
+    numbers = [1, 2, 2, 3, 4, 4, 5]
     unique_numbers = []
     index = 0
     while index < len(numbers):
