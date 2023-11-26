@@ -103,3 +103,34 @@ if os.path.exists("example_copy.txt"):
 ```
 
 These examples cover various file I/O operations in Python, including reading and writing text files, CSV files, JSON files, binary files, and more.
+
+
+# Learn the Python File I/O
+
+## CSV file
+import csv
+
+# Exercise1: Read a CSV file and print row
+with open('./data/file_io/my_data1.csv', 'r') as f:
+    reader = csv.reader(f, delimiter=',')
+    for row in reader:
+        print(row)
+        
+with open('./data/file_io/my_data1.csv', 'r') as f:
+    reader = csv.DictReader(f, delimiter=',')
+    for row in reader:
+        print(row)
+        
+        
+## JSON file
+import json
+from json import JSONDecodeError, JSONEncoder
+
+jsonString = '{"a": "apple", "b": "berry", "c": "cherry",}'
+try:
+    json.loads(jsonString)
+except JSONDecodeError:
+    print('Could not parse JSON!')
+    
+pythonDict = {'a': 'apple', 'b': 'berry', 'c': 'cherry',}
+json.dumps(pythonDict)
