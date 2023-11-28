@@ -1,15 +1,17 @@
 ## Python function is a reusable block of code 
 ## that helps to process with an input and return an output
-
-# def function_name(parameter1, parameter2, parameter3):
-#      print(f" This is a function {parameter1}, {parameter2}, {parameter3}")
-#      sum = parameter1 + parameter2 + parameter3
-#      return sum
+### Definition of function
+```
+def function_name(parameter1, parameter2, parameter3):
+      print(f" This is a function {parameter1}, {parameter2}, {parameter3}")
+      sum = parameter1 + parameter2 + parameter3
+      return sum
+```
 
 
 # 
 
-# Simple Function
+#### Simple Function
 ```
 def greet():
     print("Hello, World!")
@@ -19,7 +21,7 @@ greet()
 ```
 
 
-# Function with a Parameter
+#### Function with a Parameter
 ```
 def greet(name):
     print(f"Hello, {name}!")
@@ -30,7 +32,7 @@ greet("Alice")
 
 
 
-# Function with return value
+#### Function with return value
 ```
 def add(a, b):
     return a + b
@@ -42,7 +44,7 @@ print(f"Result: {result}")
 ```
 
 
-# Function with Multiple return values
+#### Function with Multiple return values
 ```
 def arithmetic_operations(a, b):
     return a+b, a-b, a*b, a/b
@@ -53,7 +55,7 @@ print(f"Sum: {sum}, Difference: {difference}, Product: {product}, Division: {div
 ```
 
 
-# Function with Default Parameters
+#### Function with Default Parameters
 ```
 def greet(name, msg="Good morning!"):
     print(f"Hello, {name}, {msg}")
@@ -66,7 +68,7 @@ greet("Bob", "How are you?")
 ```
 
 
-# Function with keyword arguments
+#### Function with keyword arguments
 ```
 def introduce(name, age):
     print(f"My name is {name} and I am {age} years old.")
@@ -76,7 +78,7 @@ introduce(name="Charlie", age=30)
 ```
 
 
-# Function with Arbitary Arguments
+#### Function with Arbitary Arguments
 ```
 def fruits(*args):
     for fruit in args:
@@ -87,7 +89,7 @@ fruits("apple", "banana", "cherry")
 ```
 
 
-# Function with Arbitary Keyword Arguments
+#### Function with Arbitary Keyword Arguments
 ```
 def person_info(**kwargs):
     for key, value in kwargs.items():
@@ -98,7 +100,7 @@ person_info(name="David", age=40, city="New York")
 ```
 
 
-# Recursive Function
+#### Recursive Function
 ```
 def factorial(n):
     if n == 1:
@@ -111,7 +113,7 @@ print("Factorial of 5:", factorial(5))
 ```
 
 
-# Lambda Function
+#### Lambda Function
 ```
 square = lambda x: x ** 2
 
@@ -121,7 +123,7 @@ print("Square of 4:", square(4))
 ```
 
 
-# Function with Global Variable
+#### Function with Global Variable
 ```
 x = "global"
 
@@ -134,7 +136,7 @@ func()
 ```
 
 
-# Function with Local variable
+#### Function with Local variable
 ```
 def func():
     y = "local"
@@ -146,7 +148,7 @@ func()
 ```
 
 
-# Function with Non local variable
+#### Function with Non local variable
 ```
 def outer():
     x = "local"
@@ -163,7 +165,7 @@ outer()
 ```
 
 
-# Function with DocString
+#### Function with DocString
 ```
 def multiply(a, b):
     """
@@ -177,7 +179,7 @@ print("Product of 3 and 4:", multiply(3, 4))
 
 
 
-# Function with returning function
+#### Function with returning function
 ```
 def make_multiplier(n):
     def multiplier(x):
@@ -191,7 +193,7 @@ print("3 times 5:", times3(5))
 ```
 
 
-# Nested Function
+#### Nested Function
 ```
 def outer():
     def inner():
@@ -203,7 +205,7 @@ outer()
 ```
 
 
-# Function with variable length positional, keyword
+#### Function with variable length positional, keyword
 ```
 def mix_args(*args, **kwargs):
     print("Positional arguments:", args)
@@ -214,8 +216,8 @@ mix_args(1, 2, a=3, b=4)
 ```
 
 
-# Generator Function
-# Defining the generator function countdown
+#### Generator Function
+#### Defining the generator function countdown
 ```
 def countdown(n):
     while n > 0:
@@ -238,7 +240,7 @@ print("Generator function: ", first_value, second_value, third_value)
 ```
         
 
-# Function with Type Hints
+#### Function with Type Hints
 ```
 def greeting(name: str) -> str:
     return f'Hello, {name}'
@@ -249,7 +251,7 @@ print(message)
 ```
 
 
-# Function with exception/error handling
+#### Function with exception/error handling
 ```
 def divide(x, y):
     try:
@@ -260,7 +262,7 @@ def divide(x, y):
         return result
 ```
     
-# Function with List compression
+#### Function with List compression
 ```
 def squares(n):
     return [i**2 for i in range(n)]
@@ -268,7 +270,7 @@ def squares(n):
 print(f"The square of square(2) {square(2)}")
 ```
 
-# Function with Map and Filter
+#### Function with Map and Filter
 ```
 def filter_even(numbers):
     return list(filter(lambda x: x % 2 == 0, numbers))
@@ -278,7 +280,7 @@ even_nos = filter_even(numbers_list)
 print(f"Even Numbers from {numbers_list} is {even_nos}")
 ```
 
-# Function with Decorator
+#### Function with Decorator
 ```
 def my_decorator(func):
     def wrapper():
@@ -293,7 +295,7 @@ def say_hello():
 ```
 
 
-# Function with *args and Default Parameters
+#### Function with *args and Default Parameters
 ```
 def greet_all(msg="Hello", *names):
     for name in names:
@@ -301,9 +303,9 @@ def greet_all(msg="Hello", *names):
 
 ```
 
-## Python pass/by value or reference/is by object
-## Immutable: int, float, str, tuples
-## Mutable: list, dictionaries, sets
+#### Python pass/by value or reference/is by object
+##### Immutable: int, float, str, tuples
+##### Mutable: list, dictionaries, sets
 ```
 def modify_list(lst):
     lst.append(4)
