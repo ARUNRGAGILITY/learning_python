@@ -8,7 +8,7 @@
 
 
 # 
-# ============================================================================== #
+
 # Simple Function
 ```
 def greet():
@@ -18,7 +18,7 @@ def greet():
 greet()
 ```
 
-# ============================================================================== #
+
 # Function with a Parameter
 ```
 def greet(name):
@@ -29,7 +29,7 @@ greet("Alice")
 ```
 
 
-# ============================================================================== #
+
 # Function with return value
 ```
 def add(a, b):
@@ -41,7 +41,7 @@ print(f"Result: {result}")
 
 ```
 
-# ============================================================================== #
+
 # Function with Multiple return values
 ```
 def arithmetic_operations(a, b):
@@ -52,20 +52,20 @@ sum, difference, product, division = arithmetic_operations(10, 5)
 print(f"Sum: {sum}, Difference: {difference}, Product: {product}, Division: {division}")
 ```
 
-# ============================================================================== #
+
 # Function with Default Parameters
 ```
 def greet(name, msg="Good morning!"):
     print(f"Hello, {name}, {msg}")
     
     
-# ============================================================================== #
+
 # Calling the function
 greet("Bob")
 greet("Bob", "How are you?")
 ```
 
-# ============================================================================== #
+
 # Function with keyword arguments
 ```
 def introduce(name, age):
@@ -75,7 +75,7 @@ def introduce(name, age):
 introduce(name="Charlie", age=30)
 ```
 
-# ============================================================================== #
+
 # Function with Arbitary Arguments
 ```
 def fruits(*args):
@@ -86,7 +86,7 @@ def fruits(*args):
 fruits("apple", "banana", "cherry")
 ```
 
-# ============================================================================== #
+
 # Function with Arbitary Keyword Arguments
 ```
 def person_info(**kwargs):
@@ -97,7 +97,7 @@ def person_info(**kwargs):
 person_info(name="David", age=40, city="New York")
 ```
 
-# ============================================================================== #
+
 # Recursive Function
 ```
 def factorial(n):
@@ -110,7 +110,7 @@ def factorial(n):
 print("Factorial of 5:", factorial(5))
 ```
 
-# ============================================================================== #
+
 # Lambda Function
 ```
 square = lambda x: x ** 2
@@ -120,7 +120,7 @@ print("Square of 4:", square(4))
 
 ```
 
-# ============================================================================== #
+
 # Function with Global Variable
 ```
 x = "global"
@@ -133,7 +133,7 @@ func()
 
 ```
 
-# ============================================================================== #
+
 # Function with Local variable
 ```
 def func():
@@ -145,7 +145,7 @@ func()
 
 ```
 
-# ============================================================================== #
+
 # Function with Non local variable
 ```
 def outer():
@@ -162,7 +162,7 @@ outer()
 
 ```
 
-# ============================================================================== #
+
 # Function with DocString
 ```
 def multiply(a, b):
@@ -176,7 +176,7 @@ print("Product of 3 and 4:", multiply(3, 4))
 ```
 
 
-# ============================================================================== #
+
 # Function with returning function
 ```
 def make_multiplier(n):
@@ -190,7 +190,7 @@ print("3 times 5:", times3(5))
 
 ```
 
-# ============================================================================== #
+
 # Nested Function
 ```
 def outer():
@@ -202,7 +202,7 @@ def outer():
 outer()
 ```
 
-# ============================================================================== #
+
 # Function with variable length positional, keyword
 ```
 def mix_args(*args, **kwargs):
@@ -213,7 +213,7 @@ def mix_args(*args, **kwargs):
 mix_args(1, 2, a=3, b=4)
 ```
 
-# ============================================================================== #
+
 # Generator Function
 # Defining the generator function countdown
 ```
@@ -237,7 +237,7 @@ print("Generator function: ", first_value, second_value, third_value)
 
 ```
         
-# ============================================================================== #
+
 # Function with Type Hints
 ```
 def greeting(name: str) -> str:
@@ -248,7 +248,7 @@ print(message)
 
 ```
 
-# ============================================================================== #
+
 # Function with exception/error handling
 ```
 def divide(x, y):
@@ -259,7 +259,7 @@ def divide(x, y):
     else:
         return result
 ```
-# ============================================================================== #    
+    
 # Function with List compression
 ```
 def squares(n):
@@ -267,7 +267,7 @@ def squares(n):
 
 print(f"The square of square(2) {square(2)}")
 ```
-# ============================================================================== #
+
 # Function with Map and Filter
 ```
 def filter_even(numbers):
@@ -277,7 +277,7 @@ numbers_list = [3, 2, 4, 7, 9, 21, 24]
 even_nos = filter_even(numbers_list)
 print(f"Even Numbers from {numbers_list} is {even_nos}")
 ```
-# ============================================================================== #
+
 # Function with Decorator
 ```
 def my_decorator(func):
@@ -292,7 +292,7 @@ def say_hello():
     print("Hello!")
 ```
 
-# ============================================================================== #
+
 # Function with *args and Default Parameters
 ```
 def greet_all(msg="Hello", *names):
@@ -300,7 +300,7 @@ def greet_all(msg="Hello", *names):
         print(f"{msg}, {name}")
 
 ```
-# ============================================================================== #
+
 ## Python pass/by value or reference/is by object
 ## Immutable: int, float, str, tuples
 ## Mutable: list, dictionaries, sets
