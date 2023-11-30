@@ -601,3 +601,95 @@ print(car.perform_maintenance())  # Using public method
 
 Each example illustrates a different scenario where public, protected, and private members are used in a Python class, demonstrating their applicability in real-world applications. Public members are openly accessible, protected members are meant for internal and subclass usage, and private members are strictly for internal class operations.
 
+#### APIE : more examples
+
+Let's delve into five examples each for the four key principles of Object-Oriented Programming (OOP) in Python: Abstraction, Polymorphism, Inheritance, and Encapsulation (APIE).
+
+### Abstraction
+Abstraction is about hiding the complex implementation while only exposing the necessary parts.
+
+1. **Shapes**:
+   - Abstract class: `Shape` with an abstract method `area()`.
+   - Concrete classes: `Circle`, `Square`, each implementing `area()`.
+
+2. **Vehicles**:
+   - Abstract class: `Vehicle` with abstract methods `start()` and `stop()`.
+   - Concrete classes: `Car`, `Motorcycle`, each with their own start/stop mechanisms.
+
+3. **Database Connection**:
+   - Abstract class: `Database` with abstract methods `connect()` and `disconnect()`.
+   - Concrete classes: `MySQLDatabase`, `MongoDBDatabase`, implementing specific connection details.
+
+4. **File Reader**:
+   - Abstract class: `FileReader` with abstract method `read()`.
+   - Concrete classes: `PDFReader`, `WordReader`, each tailored to a file format.
+
+5. **Payment Processor**:
+   - Abstract class: `PaymentProcessor` with abstract methods `authorize_payment()` and `process_payment()`.
+   - Concrete classes: `CreditCardProcessor`, `PaypalProcessor`, each with specific payment processing steps.
+
+### Polymorphism
+Polymorphism allows methods to do different things based on the object type.
+
+1. **Animal Sounds**:
+   - Base class: `Animal` with method `make_sound()`.
+   - Derived classes: `Dog`, `Cat`, each overriding `make_sound()`.
+
+2. **Drawing Tools**:
+   - Base class: `DrawingTool` with method `draw()`.
+   - Derived classes: `Pen`, `Brush`, each with a unique draw implementation.
+
+3. **Transport Mode**:
+   - Base class: `Transport` with method `travel()`.
+   - Derived classes: `Car`, `Airplane`, each with their own travel methods.
+
+4. **Notification System**:
+   - Base class: `Notifier` with method `send_notification()`.
+   - Derived classes: `EmailNotifier`, `SMSNotifier`, each sending notifications differently.
+
+5. **User Interface Elements**:
+   - Base class: `UIElement` with method `render()`.
+   - Derived classes: `Button`, `Checkbox`, each renders on the screen differently.
+
+### Inheritance
+Inheritance is a mechanism where a class derives attributes and methods from another class.
+
+1. **Employee Types**:
+   - Base class: `Employee` with common attributes and methods.
+   - Derived classes: `Manager`, `Engineer`, inheriting from `Employee` and adding specific attributes/methods.
+
+2. **School System**:
+   - Base class: `Person` with general attributes like `name`, `age`.
+   - Derived classes: `Student`, `Teacher`, extending `Person` with specific properties.
+
+3. **Electronic Devices**:
+   - Base class: `ElectronicDevice` with basic functionalities.
+   - Derived classes: `Smartphone`, `Tablet`, extending the base class with additional features.
+
+4. **Bank Accounts**:
+   - Base class: `BankAccount` with generic account methods.
+   - Derived classes: `CheckingAccount`, `SavingsAccount`, with specific account behaviors.
+
+5. **Game Characters**:
+   - Base class: `GameCharacter` with basic character properties.
+   - Derived classes: `Warrior`, `Mage`, each with unique abilities and stats.
+
+### Encapsulation
+Encapsulation involves bundling data and methods that operate on the data within one unit and restricting direct access to some of the object’s components.
+
+1. **User Account**:
+   - Class: `UserAccount` encapsulating `username`, `password` (private), and methods to `login()`, `change_password()`.
+
+2. **Order System**:
+   - Class: `Order` encapsulating order details and providing methods to `add_item()`, `calculate_total()`.
+
+3. **Thermostat**:
+   - Class: `Thermostat` encapsulating `current_temperature` (private) and providing public methods to `set_temperature()`, `get_temperature()`.
+
+4. **Inventory Management**:
+   - Class: `Inventory` with private data about inventory items and public methods to `add_item()`, `remove_item()`, `check_stock()`.
+
+5. **Course Registration**:
+   - Class: `CourseRegistration` encapsulating course details and student lists, providing methods to `enroll_student()`, `drop_student()`, and `list_students()`.
+
+Each of these examples demonstrates the respective OOP principles in a practical context, helping to understand when and how to apply them in Python programming.
