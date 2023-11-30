@@ -203,7 +203,7 @@ In this example, `__price` is a private attribute. `get_price` and `set_price` a
 These examples and explanations should provide a clearer understanding of the four fundamental OOP principles in Python. Each concept is crucial for designing robust, reusable, and maintainable code in an object-oriented way.
 
 
-Certainly! Let's expand on each of the OOP principles with more detailed examples to deepen your understanding.
+Let's expand on each of the OOP principles with more detailed examples to deepen your understanding.
 
 ### 1. Abstraction
 
@@ -473,3 +473,131 @@ print(my_computer.start_computer())  # Accessible
 ```
 
 In these examples, the **public members** are accessible to everyone, the **protected members** are intended for internal use and subclasses, and the **private members** are exclusively used within the class itself. This distinction helps manage and protect the data and functionality of your classes, leading to more robust and maintainable code.
+
+#### Examples of Public, Protected and Private variables and methods in details
+
+Let's explore four additional examples to demonstrate the use of public, protected, and private variables and methods in Python classes, each in a different context.
+
+### Example 1: Library Management System
+
+```python
+class Library:
+    def __init__(self):
+        self.books = []  # Public attribute
+        self._catalogue = {}  # Protected attribute
+        self.__database_access = "Access Key"  # Private attribute
+
+    def add_book(self, book):  # Public method
+        self.books.append(book)
+        self._update_catalogue(book)
+
+    def _update_catalogue(self, book):  # Protected method
+        if book in self._catalogue:
+            self._catalogue[book] += 1
+        else:
+            self._catalogue[book] = 1
+
+    def __database_connect(self):  # Private method
+        return f"Connecting to database with {self.__database_access}"
+
+    def check_availability(self, book):
+        self.__database_connect()  # Using private method
+        return self._catalogue.get(book, 0) > 0
+
+# Usage
+library = Library()
+library.add_book("Python 101")
+print(library.books)  # Public attribute
+print(library.check_availability("Python 101"))  # Using public method
+```
+
+### Example 2: Online Shopping System
+
+```python
+class ShoppingCart:
+    def __init__(self):
+        self.items = []  # Public attribute
+        self._total = 0  # Protected attribute
+        self.__discount_code = "SECRET100"  # Private attribute
+
+    def add_item(self, item, price):  # Public method
+        self.items.append(item)
+        self._update_total(price)
+
+    def _update_total(self, price):  # Protected method
+        self._total += price
+
+    def __apply_discount(self):  # Private method
+        self._total *= 0.9
+
+    def checkout(self):
+        self.__apply_discount()
+        return f"Total after discount: {self._total}"
+
+# Usage
+cart = ShoppingCart()
+cart.add_item("Laptop", 1000)
+print(cart.items)  # Public attribute
+print(cart.checkout())  # Using public method
+```
+
+### Example 3: Social Media Profile
+
+```python
+class SocialMediaProfile:
+    def __init__(self, username):
+        self.username = username  # Public attribute
+        self._followers = 0  # Protected attribute
+        self.__password = "SuperSecret"  # Private attribute
+
+    def follow(self):  # Public method
+        self._followers += 1
+
+    def _show_followers(self):  # Protected method
+        return f"Followers: {self._followers}"
+
+    def __login(self):  # Private method
+        return f"Logging in with password {self.__password}"
+
+    def post_update(self):
+        if self.__login():  # Using private method
+            return "Posted an update"
+
+# Usage
+profile = SocialMediaProfile("user123")
+profile.follow()
+print(profile.username)  # Public attribute
+print(profile.post_update())  # Using public method
+```
+
+### Example 4: Vehicle System
+
+```python
+class Vehicle:
+    def __init__(self, make, model):
+        self.make = make  # Public attribute
+        self.model = model  # Public attribute
+        self._mileage = 0  # Protected attribute
+        self.__engine_number = "123456789"  # Private attribute
+
+    def drive(self, distance):  # Public method
+        self._mileage += distance
+
+    def _show_mileage(self):  # Protected method
+        return f"Mileage: {self._mileage} km"
+
+    def __engine_check(self):  # Private method
+        return f"Engine Number: {self.__engine_number} is OK"
+
+    def perform_maintenance(self):
+        return self.__engine_check()  # Using private method
+
+# Usage
+car = Vehicle("Toyota", "Corolla")
+car.drive(100)
+print(f"{car.make} {car.model}")  # Public attributes
+print(car.perform_maintenance())  # Using public method
+```
+
+Each example illustrates a different scenario where public, protected, and private members are used in a Python class, demonstrating their applicability in real-world applications. Public members are openly accessible, protected members are meant for internal and subclass usage, and private members are strictly for internal class operations.
+
