@@ -98,3 +98,106 @@ c.sell()
 ```
 
 In this example, `__max_price` is a private variable, accessible only inside the class. We use a method `set_max_price` to modify it, which is an example of encapsulation.
+
+
+Absolutely, let's break down each of the Object-Oriented Programming (OOP) principles in Python: Abstraction, Polymorphism, Inheritance, and Encapsulation, with more detailed step-by-step explanations and examples.
+
+### 1. Abstraction
+Abstraction is about hiding the complex implementation details and showing only the necessary features of an object. In Python, we use abstract classes and methods to achieve this.
+
+**Step-by-Step Explanation:**
+1. **Abstract Class**: It's a class that cannot be instantiated and is designed to be a blueprint for other classes. It often contains one or more abstract methods.
+2. **Abstract Method**: This is a method that has a declaration but does not have an implementation. It is meant to be overridden in a subclass.
+
+**Example:**
+Let's consider an example of a vehicle as an abstract class.
+
+```python
+from abc import ABC, abstractmethod
+
+class Vehicle(ABC):
+    @abstractmethod
+    def start_engine(self):
+        pass
+
+class Car(Vehicle):
+    def start_engine(self):
+        return "Car engine started"
+
+class Boat(Vehicle):
+    def start_engine(self):
+        return "Boat engine started"
+```
+
+Here, `Vehicle` is an abstract class with an abstract method `start_engine`. `Car` and `Boat` are subclasses that provide specific implementations of `start_engine`.
+
+### 2. Polymorphism
+Polymorphism means 'many forms'. In OOP, it allows methods to do different things based on the object it's acting upon.
+
+**Step-by-Step Explanation:**
+1. **Method Overriding**: This is where a method in a subclass has the same name and type signature as a method in its superclass, but the implementation is different.
+
+**Example:**
+Expanding on our vehicle example:
+
+```python
+vehicles = [Car(), Boat()]
+for vehicle in vehicles:
+    print(vehicle.start_engine())
+```
+
+In this example, the method `start_engine` behaves differently for `Car` and `Boat`. This is polymorphism.
+
+### 3. Inheritance
+Inheritance is a mechanism where a new class is derived from an existing class.
+
+**Step-by-Step Explanation:**
+1. **Base Class (Parent Class)**: The class being inherited from.
+2. **Derived Class (Child Class)**: The class that inherits from the Base class. It can add new attributes and methods or override existing ones.
+
+**Example:**
+Let's introduce an Electric Car that inherits from Car.
+
+```python
+class ElectricCar(Car):
+    def start_engine(self):
+        return "Electric Car engine started silently"
+
+electric_car = ElectricCar()
+print(electric_car.start_engine())
+```
+
+Here, `ElectricCar` inherits from `Car` and overrides the `start_engine` method.
+
+### 4. Encapsulation
+Encapsulation is the bundling of data (variables) and methods (functions) that operate on the data into a single unit, or class. It also restricts direct access to some of an object's components.
+
+**Step-by-Step Explanation:**
+1. **Private Members**: In Python, we use the double underscore `__` prefix to make an attribute or method private.
+2. **Public Methods**: These are used to access and modify the private members.
+
+**Example:**
+Let's encapsulate the data in a class.
+
+```python
+class Laptop:
+    def __init__(self):
+        self.__price = 500
+
+    def get_price(self):
+        return self.__price
+
+    def set_price(self, price):
+        if price > 0:
+            self.__price = price
+
+laptop = Laptop()
+print(laptop.get_price())  # Accessing price
+
+laptop.set_price(600)
+print(laptop.get_price())  # Modified price
+```
+
+In this example, `__price` is a private attribute. `get_price` and `set_price` are public methods to read and modify the price.
+
+These examples and explanations should provide a clearer understanding of the four fundamental OOP principles in Python. Each concept is crucial for designing robust, reusable, and maintainable code in an object-oriented way.
