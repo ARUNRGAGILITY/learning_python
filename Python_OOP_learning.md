@@ -400,3 +400,76 @@ print(example._protected_method()) # Technically accessible, but not recommended
 
 In practice, while Python doesn't enforce access restrictions as strictly as languages like Java or C++, it's a convention and good practice to adhere to these access control mechanisms for better code organization and encapsulation.
 
+#### Usage Examples of Public, Protected and Private members / methods
+
+Let's use real-world examples to illustrate when to use public, protected, and private variables and methods in Python, making it easier for beginners to understand.
+
+### 1. Public Members
+**Real-world Example**: Consider a `Car` class. Public attributes/methods are like the features of the car that are accessible to everyone, like the car model, color, or the ability to start the engine.
+
+**When to Use**: Use public members when they need to be accessed freely, both within the class and from outside of it.
+
+```python
+class Car:
+    def __init__(self, model, color):
+        self.model = model  # Public attribute
+        self.color = color  # Public attribute
+
+    def start_engine(self):  # Public method
+        return "Engine started"
+
+# Usage
+my_car = Car("Tesla Model S", "Red")
+print(my_car.model)  # Accessible
+print(my_car.start_engine())  # Accessible
+```
+
+### 2. Protected Members
+**Real-world Example**: Think of a `BankAccount` class. Protected members are like the ledger balance, which should be accessible to the bank and its subsidiaries but not to the general public.
+
+**When to Use**: Use protected members when they are intended for use within the class and its subclasses but not outside of these.
+
+```python
+class BankAccount:
+    def __init__(self):
+        self._balance = 0  # Protected attribute
+
+    def deposit(self, amount):
+        if amount > 0:
+            self._balance += amount
+            return "Deposit successful"
+
+class SavingsAccount(BankAccount):
+    def calculate_interest(self):
+        return self._balance * 0.05  # Accessing protected attribute
+
+# Usage
+saving_acc = SavingsAccount()
+saving_acc.deposit(1000)
+print(saving_acc.calculate_interest())  # Accessible within subclass
+```
+
+### 3. Private Members
+**Real-world Example**: Imagine a `Computer` class. Private members are like the internal components of the computer, such as the motherboard or CPU, which should not be tampered with by the users.
+
+**When to Use**: Use private members when they are not intended to be accessed from outside the class. They are typically used for internal workings and helper methods.
+
+```python
+class Computer:
+    def __init__(self):
+        self.__cpu = "Intel Core i7"  # Private attribute
+
+    def __cooling_system(self):  # Private method
+        return "Cooling system active"
+
+    def start_computer(self):
+        self.__cooling_system()  # Accessing private method
+        return "Computer started with " + self.__cpu
+
+# Usage
+my_computer = Computer()
+print(my_computer.start_computer())  # Accessible
+# print(my_computer.__cpu)  # Will raise an AttributeError
+```
+
+In these examples, the **public members** are accessible to everyone, the **protected members** are intended for internal use and subclasses, and the **private members** are exclusively used within the class itself. This distinction helps manage and protect the data and functionality of your classes, leading to more robust and maintainable code.
