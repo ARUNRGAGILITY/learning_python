@@ -334,3 +334,69 @@ print(account.get_balance())
 In this example, the balance is a private attribute. The `deposit`, `withdraw`, and `get_balance` methods are used to interact with the balance.
 
 These additional examples should help in understanding how to apply the principles of OOP in different contexts. Each concept is instrumental in building a solid foundation in object-oriented programming in Python.
+
+#### Public, Private, Protected Definitions
+
+In Python, access control for class members (attributes and methods) is achieved through naming conventions for public, private, and protected members. Understanding these is key to implementing encapsulation effectively.
+
+### Public Members
+- **Definition**: Public members are accessible from outside the class. The use of public members is safe and intended.
+- **Naming Convention**: Regular method or attribute names, e.g., `name` or `method_name()`.
+- **Example**: A class method that's intended to be used freely by the instances of the class and outside of the class.
+
+### Private Members
+- **Definition**: Private members are intended to be used only within the class. Accessing them outside the class leads to a naming error.
+- **Naming Convention**: Name prefixed with two underscores, e.g., `__name` or `__method_name()`.
+- **Example**: An attribute that should not be accessible directly from outside of the class, such as internal state or helper methods.
+
+### Protected Members
+- **Definition**: Protected members are intended for use within the class and subclasses. They are accessible from outside the class, but this is considered bad practice.
+- **Naming Convention**: Name prefixed with a single underscore, e.g., `_name` or `_method_name()`.
+- **Example**: An attribute that is meant to be used within the class and subclasses, indicating a more internal use than public members.
+
+### Tabular Summary
+
+| Access Type | Naming Convention   | Accessible From           | Example Usage                                 |
+|-------------|---------------------|---------------------------|-----------------------------------------------|
+| Public      | `name`, `method()`  | Anywhere                  | `obj.name`, `obj.method()`                    |
+| Protected   | `_name`, `_method()`| Class and subclasses      | For subclassing, internal variables/methods   |
+| Private     | `__name`, `__method()`| Within the class only    | Internal workings of the class, helper methods|
+
+### Detailed Example
+
+Here's a class example showcasing public, protected, and private members:
+
+```python
+class ExampleClass:
+    def __init__(self):
+        self.public_var = "I am public"
+        self._protected_var = "I am protected"
+        self.__private_var = "I am private"
+
+    def public_method(self):
+        return "This is a public method"
+
+    def _protected_method(self):
+        return "This is a protected method"
+
+    def __private_method(self):
+        return "This is a private method"
+
+# Creating an instance of ExampleClass
+example = ExampleClass()
+
+# Accessing public members
+print(example.public_var)         # Accessible
+print(example.public_method())    # Accessible
+
+# Accessing protected members
+print(example._protected_var)     # Technically accessible, but not recommended
+print(example._protected_method()) # Technically accessible, but not recommended
+
+# Accessing private members
+# print(example.__private_var)      # Will raise an AttributeError
+# print(example.__private_method()) # Will raise an AttributeError
+```
+
+In practice, while Python doesn't enforce access restrictions as strictly as languages like Java or C++, it's a convention and good practice to adhere to these access control mechanisms for better code organization and encapsulation.
+
