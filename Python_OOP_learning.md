@@ -201,3 +201,136 @@ print(laptop.get_price())  # Modified price
 In this example, `__price` is a private attribute. `get_price` and `set_price` are public methods to read and modify the price.
 
 These examples and explanations should provide a clearer understanding of the four fundamental OOP principles in Python. Each concept is crucial for designing robust, reusable, and maintainable code in an object-oriented way.
+
+
+Certainly! Let's expand on each of the OOP principles with more detailed examples to deepen your understanding.
+
+### 1. Abstraction
+
+Abstraction is about focusing on what an object does, rather than how it does it. It's implemented using abstract classes and methods.
+
+**Further Example:**
+
+Let's create an abstract class `Animal` and derive different animal classes from it.
+
+```python
+from abc import ABC, abstractmethod
+
+class Animal(ABC):
+    @abstractmethod
+    def sound(self):
+        pass
+
+class Dog(Animal):
+    def sound(self):
+        return "Bark!"
+
+class Cat(Animal):
+    def sound(self):
+        return "Meow"
+
+# Usage
+dog = Dog()
+cat = Cat()
+print(dog.sound())  # Output: Bark!
+print(cat.sound())  # Output: Meow
+```
+
+In this example, `Animal` is an abstract class with an abstract method `sound`. `Dog` and `Cat` are concrete classes implementing their version of `sound`.
+
+### 2. Polymorphism
+
+Polymorphism allows us to define methods in the child class with the same name as defined in their parent class.
+
+**Further Example:**
+
+Let's extend the `Animal` class with a method `info` that behaves differently for each animal.
+
+```python
+class Dog(Animal):
+    def sound(self):
+        return "Bark!"
+
+    def info(self):
+        return "Dogs are loyal."
+
+class Cat(Animal):
+    def sound(self):
+        return "Meow"
+
+    def info(self):
+        return "Cats love independence."
+
+animals = [Dog(), Cat()]
+for animal in animals:
+    print(animal.info())
+```
+
+Each animal class (`Dog` and `Cat`) has its own implementation of `info`, showcasing polymorphism.
+
+### 3. Inheritance
+
+Inheritance allows us to define a class that inherits all the methods and properties from another class.
+
+**Further Example:**
+
+Let's create a base class `Vehicle` and then derive different types of vehicles from it.
+
+```python
+class Vehicle:
+    def general_usage(self):
+        return "Transportation"
+
+class Car(Vehicle):
+    def specific_usage(self):
+        return "Commute to work"
+
+class Truck(Vehicle):
+    def specific_usage(self):
+        return "Transport goods"
+
+car = Car()
+truck = Truck()
+print(car.general_usage())  # Inherited method
+print(car.specific_usage())  # Specific to Car
+```
+
+`Car` and `Truck` inherit from `Vehicle` and have their own specific usage method.
+
+### 4. Encapsulation
+
+Encapsulation involves keeping the internal state of an object safe from external modification.
+
+**Further Example:**
+
+Let's create a `BankAccount` class that encapsulates the balance and provides methods to deposit or withdraw money.
+
+```python
+class BankAccount:
+    def __init__(self):
+        self.__balance = 0  # Private attribute
+
+    def deposit(self, amount):
+        if amount > 0:
+            self.__balance += amount
+            return "Deposit successful"
+
+    def withdraw(self, amount):
+        if 0 < amount <= self.__balance:
+            self.__balance -= amount
+            return "Withdrawal successful"
+        return "Insufficient balance"
+
+    def get_balance(self):
+        return self.__balance
+
+account = BankAccount()
+print(account.deposit(1000))
+print(account.get_balance())
+print(account.withdraw(500))
+print(account.get_balance())
+```
+
+In this example, the balance is a private attribute. The `deposit`, `withdraw`, and `get_balance` methods are used to interact with the balance.
+
+These additional examples should help in understanding how to apply the principles of OOP in different contexts. Each concept is instrumental in building a solid foundation in object-oriented programming in Python.
