@@ -136,3 +136,78 @@ Regular expressions (regex) are a powerful tool in Python, especially for parsin
    ```python
    re.search(r"\bword\b", "a word here")  # Matches 'word' as a whole word
    ```
+
+
+# Regular expressions usage / use cases
+Regular expressions are extremely versatile and useful in a wide range of programming and data processing scenarios. 
+
+### 1. **Data Validation**
+   - **Email Validation**: Ensuring user input is in a valid email format.
+     ```python
+     if re.match(r"[^@]+@[^@]+\.[^@]+", user_email):
+         # Valid email
+     ```
+   - **Phone Number Validation**: Validating various international phone number formats.
+     ```python
+     if re.match(r"\+?[0-9 .-]{10,15}", phone_number):
+         # Valid phone number
+     ```
+
+### 2. **Web Scraping**
+   - Extracting specific information from web pages, like URLs, email addresses, or specific text patterns.
+     ```python
+     emails = re.findall(r"[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}", webpage_content)
+     ```
+
+### 3. **URL Routing in Django**
+   - Defining URL patterns in your Django project. Regular expressions allow for complex URL pattern matching.
+     ```python
+     urlpatterns = [
+         re_path(r'^articles/(?P<year>[0-9]{4})/$', views.year_archive),
+     ]
+     ```
+
+### 4. **Search and Replace in Text Processing**
+   - Cleaning or modifying strings in data preprocessing, like removing special characters or formatting text.
+     ```python
+     cleaned_text = re.sub(r"[^a-zA-Z0-9]", "", raw_text)
+     ```
+
+### 5. **Parsing Log Files**
+   - Extracting specific pieces of information from log files, which is crucial for debugging and monitoring.
+     ```python
+     ip_addresses = re.findall(r"\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b", log_data)
+     ```
+
+### 6. **Data Extraction from Documents**
+   - Extracting dates, names, or other specific information from structured or unstructured text.
+     ```python
+     dates = re.findall(r"\b\d{1,2}/\d{1,2}/\d{4}\b", document_text)
+     ```
+
+### 7. **Input Sanitization**
+   - Removing potentially harmful characters from user input, especially important for web security.
+     ```python
+     safe_input = re.sub(r"[<>]", "", user_input)
+     ```
+
+### 8. **Natural Language Processing**
+   - Simple tokenization or identifying patterns in text, like finding all hashtags in social media posts.
+     ```python
+     hashtags = re.findall(r"#(\w+)", social_media_post)
+     ```
+
+### 9. **Formatting Strings**
+   - Converting text to a specific format, like changing date formats or normalizing whitespace.
+     ```python
+     formatted_date = re.sub(r"(\d{4})-(\d{2})-(\d{2})", r"\3-\2-\1", raw_date)
+     ```
+
+### 10. **File Renaming and Organization**
+   - Automating the process of renaming and organizing files based on pattern matching.
+     ```python
+     for filename in os.listdir(directory):
+         new_name = re.sub(r"[\s_]+", "-", filename).lower()
+         os.rename(os.path.join(directory, filename), os.path.join(directory, new_name))
+     ```
+
