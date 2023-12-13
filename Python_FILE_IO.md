@@ -144,3 +144,97 @@ except JSONDecodeError:
 pythonDict = {'a': 'apple', 'b': 'berry', 'c': 'cherry',}
 json.dumps(pythonDict)
 ```
+
+## XML, INI, YAML file i/o
+
+Reading and writing files in different formats like XML, INI, and YAML is a common requirement in many Python applications. Here are examples for each of these file types:
+
+### XML File IO
+
+Python's `xml.etree.ElementTree` module can be used for XML file processing.
+
+#### Reading XML:
+
+```python
+import xml.etree.ElementTree as ET
+
+# Reading an XML file
+tree = ET.parse('example.xml')
+root = tree.getroot()
+
+# Iterating through elements
+for child in root:
+    print(child.tag, child.attrib)
+```
+
+#### Writing XML:
+
+```python
+# Creating a new XML file
+new_root = ET.Element("data")
+item1 = ET.SubElement(new_root, "item")
+item1.set("name", "item1")
+
+# Writing to file
+tree = ET.ElementTree(new_root)
+tree.write("new_example.xml")
+```
+
+### INI File IO
+
+For INI files, you can use Python's `configparser` module.
+
+#### Reading INI:
+
+```python
+import configparser
+
+config = configparser.ConfigParser()
+config.read('example.ini')
+
+# Accessing a specific value
+value = config['DEFAULT']['SomeSetting']
+print(value)
+```
+
+#### Writing INI:
+
+```python
+config['DEFAULT'] = {'SomeSetting': 'value', 'AnotherSetting': '10'}
+
+with open('new_example.ini', 'w') as configfile:
+    config.write(configfile)
+```
+
+### YAML File IO
+
+YAML files can be handled using the `PyYAML` library, which you might need to install first using `pip install PyYAML`.
+
+#### Reading YAML:
+
+```python
+import yaml
+
+with open('example.yaml', 'r') as file:
+    data = yaml.safe_load(file)
+    print(data)
+```
+
+#### Writing YAML:
+
+```python
+data = {'key': 'value', 'list': [1, 2, 3]}
+
+with open('new_example.yaml', 'w') as file:
+    yaml.dump(data, file)
+```
+
+In these examples, replace `'example.xml'`, `'example.ini'`, and `'example.yaml'` with the paths to your own files. The reading and writing processes might need to be adjusted based on the specific structure of your files and the data you wish to manipulate. 
+
+For the YAML examples, ensure you have PyYAML installed in your Python environment. If not, you can install it using pip:
+
+```bash
+pip install PyYAML
+``` 
+
+Remember, working with file IO requires appropriate error handling, especially for production code, to handle situations like missing files, parsing errors, and ensuring file access permissions.
