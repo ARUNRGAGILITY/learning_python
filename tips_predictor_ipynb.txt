@@ -1,0 +1,49 @@
+# Tip Prediction Project
+# Import Libraries
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error
+from sklearn.preprocessing import OneHotEncoder
+
+
+# Load dataset directly from GitHub repository
+tips_file = "tips.csv"
+tips = pd.read_csv(tips_file)
+tips.head()
+
+# One-hot encode categorical variables
+encoder = OneHotEncoder(sparse_output=False, drop='first')
+encoded_vars = pd.DataFrame(encoder.fit_transform(tips[['sex', 'smoker', 'day', 'time']]))
+
+# Use get_feature_names_out for newer versions of scikit-learn
+encoded_vars.columns = encoder.get_feature_names_out(['sex', 'smoker', 'day', 'time'])
+
+
+# Combine with numeric variables
+tips_encoded = pd.concat([tips[['total_bill', 'size']], encoded_vars], axis=1)
+
+# Split data into features and target
+X = tips_encoded
+y = tips['tip']
+
+# Split data into training and test sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Create and train the model
+model = LinearRegression()
+model.fit(X_train, y_train)
+
+# Predict on the test set
+y_pred = model.predict(X_test)
+
+# Evaluate the model
+mse = mean_squared_error(y_test, y_pred)
+print(f"Mean Squared Error: {mse}")
+
+plt.scatter(y_test, y_pred)
+plt.xlabel('Actual Tips')
+plt.ylabel('Predicted Tips')
+plt.title('Actual vs Predicted Tips')
+plt.show()
