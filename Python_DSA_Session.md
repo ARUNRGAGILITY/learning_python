@@ -253,3 +253,201 @@ def fibonacci(n, memo={}):
 # Example usage
 print(fibonacci(10))
 ```
+
+## Practical explaination of the Complexity
+
+Big O notation is indeed a fundamental concept for understanding algorithm efficiency. It helps you evaluate how well an algorithm scales as the size of input data increases. Let's dive deeper into each of the common Big O notations for a better understanding:
+
+### 1. O(1) - Constant Time
+
+- **Description:** The time taken by the algorithm is the same, regardless of the input size.
+- **Example:** Accessing a specific element in an array by its index.
+- **Why it's Efficient:** The operation's time doesn't increase with the size of the input data.
+
+### 2. O(log n) - Logarithmic Time
+
+- **Description:** The time taken increases logarithmically with the input size.
+- **Example:** Binary search in a sorted array. In each step, it halves the number of elements to search.
+- **Why it's Efficient:** It can handle large data sets efficiently as the time complexity doesn't grow linearly.
+
+### 3. O(n) - Linear Time
+
+- **Description:** The time increases linearly with the size of the input.
+- **Example:** Simple search algorithms like linear search, where you look at every element in a list.
+- **Characteristics:** Straightforward but can become inefficient with large data sets.
+
+### 4. O(n log n) - Log-Linear Time
+
+- **Description:** Combines linear and logarithmic characteristics. It's common in efficient sorting algorithms.
+- **Example:** Algorithms like mergesort or quicksort. They divide the data (log n) and then perform sorting on each partition (n).
+- **Advantage:** More efficient than simple linear or quadratic sorting algorithms for large data sets.
+
+### 5. O(n²) - Quadratic Time
+
+- **Description:** The time taken grows quadratically with the input size.
+- **Example:** Algorithms with nested loops, such as bubble sort or insertion sort.
+- **Downside:** Becomes very inefficient as the data size grows.
+
+### 6. O(2^n) - Exponential Time
+
+- **Description:** The time doubles with each addition to the input data set.
+- **Example:** Recursive algorithms that solve a problem of size n by recursively solving two smaller problems of size n-1, like certain divide-and-conquer algorithms.
+- **Challenge:** Highly inefficient for large n, often impractical.
+
+### 7. O(n!) - Factorial Time
+
+- **Description:** The time increases factorially with the input size. It's the most inefficient among common complexities.
+- **Example:** Algorithms that need to calculate all possible permutations of a set, like the brute-force solution to the traveling salesman problem.
+- **Limitation:** Becomes infeasible even with relatively small input sizes.
+
+### Visualizing Big O
+
+Understanding Big O notation is easier when you visualize how the time complexity grows with the size of the input. Here's a conceptual illustration:
+
+- **O(1)**: A flat line, indicating constant time regardless of input size.
+- **O(log n)**: A gradually flattening curve.
+- **O(n)**: A straight line, showing linear growth with input size.
+- **O(n log n)**: A curve steeper than linear but less steep than quadratic.
+- **O(n²)**: A parabolic curve, steeply increasing with input size.
+- **O(2^n)** and **O(n!)**: Start similar to other curves but then skyrocket for larger values of n.
+
+## Code examples of complexities in Python
+Let's look at Python examples for each of the Big O notations to better understand how they manifest in real code.
+
+### 1. O(1) - Constant Time
+
+A function that returns the first element of a list demonstrates O(1) complexity. The operation takes the same amount of time, regardless of the list's size.
+
+```python
+def get_first_element(elements):
+    return elements[0] if elements else None
+
+# Example usage
+print(get_first_element([3, 2, 1, 4, 5]))
+```
+
+### 2. O(log n) - Logarithmic Time
+
+Binary search is an example of O(log n). The function divides the problem space in half with each step.
+
+```python
+def binary_search(arr, target):
+    low, high = 0, len(arr) - 1
+    while low <= high:
+        mid = (low + high) // 2
+        if arr[mid] < target:
+            low = mid + 1
+        elif arr[mid] > target:
+            high = mid - 1
+        else:
+            return mid
+    return -1
+
+# Example usage
+arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+print(binary_search(arr, 5))
+```
+
+### 3. O(n) - Linear Time
+
+A function that sums all elements in a list is an example of O(n) complexity. It needs to look at each element once.
+
+```python
+def sum_elements(arr):
+    total = 0
+    for element in arr:
+        total += element
+    return total
+
+# Example usage
+print(sum_elements([1, 2, 3, 4, 5]))
+```
+
+### 4. O(n log n) - Log-Linear Time
+
+Merge sort is an example of O(n log n). The list is divided in half multiple times, and then merged back together.
+
+```python
+def merge_sort(arr):
+    if len(arr) > 1:
+        mid = len(arr) // 2
+        L = arr[:mid]
+        R = arr[mid:]
+
+        merge_sort(L)
+        merge_sort(R)
+
+        i = j = k = 0
+
+        while i < len(L) and j < len(R):
+            if L[i] < R[j]:
+                arr[k] = L[i]
+                i += 1
+            else:
+                arr[k] = R[j]
+                j += 1
+            k += 1
+
+        while i < len(L):
+            arr[k] = L[i]
+            i += 1
+            k += 1
+
+        while j < len(R):
+            arr[k] = R[j]
+            j += 1
+            k += 1
+
+    return arr
+
+# Example usage
+print(merge_sort([12, 11, 13, 5, 6, 7]))
+```
+
+### 5. O(n²) - Quadratic Time
+
+Bubble sort is an example of O(n²) complexity. It consists of nested loops, each of which can iterate n times.
+
+```python
+def bubble_sort(arr):
+    n = len(arr)
+    for i in range(n):
+        for j in range(0, n-i-1):
+            if arr[j] > arr[j+1]:
+                arr[j], arr[j+1] = arr[j+1], arr[j]
+    return arr
+
+# Example usage
+print(bubble_sort([64, 34, 25, 12, 22, 11, 90]))
+```
+
+### 6. O(2^n) - Exponential Time
+
+A recursive implementation of the Fibonacci sequence is an example of O(2^n) complexity.
+
+```python
+def fibonacci(n):
+    if n <= 1:
+        return n
+    else:
+        return fibonacci(n-1) + fibonacci(n-2)
+
+# Example usage
+print(fibonacci(10))
+```
+
+### 7. O(n!) - Factorial Time
+
+Generating all permutations of a list is an example of O(n!) complexity.
+
+```python
+from itertools import permutations
+
+def all_permutations(arr):
+    return list(permutations(arr))
+
+# Example usage
+print(all_permutations([1, 2, 3]))
+```
+
+
