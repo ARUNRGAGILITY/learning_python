@@ -75,6 +75,55 @@ def find_element(arr, key):
 
 This function `find_element` searches for a `key` in a list `arr`. The time complexity here is O(n) because, in the worst case, it scans each element of the array once.
 
+### How to solve the problems
+
+Solving problems with respect to Big O notation usually involves two main steps: understanding the problem to determine the time or space complexity and then, if necessary, optimizing the algorithm to improve that complexity. Let's discuss how to approach this for each common Big O complexity.
+
+### 1. O(1) - Constant Time
+To achieve O(1), your algorithm should perform a fixed number of operations, regardless of the input size. For example, accessing an element by index in an array or hash table, or performing a simple arithmetic operation.
+
+- **Optimization:** Focus on direct access to data or a fixed number of steps.
+
+### 2. O(log n) - Logarithmic Time
+O(log n) is achieved when your algorithm reduces the problem size by a constant factor (usually by half) with each step. Binary search is a classic example.
+
+- **Optimization:** Divide the problem in half each time (or by any constant factor). Recursive approaches often lend themselves to this.
+
+### 3. O(n) - Linear Time
+In O(n) algorithms, you typically process each input element a constant number of times. Linear search and simple loops over data fall into this category.
+
+- **Optimization:** Ensure that you're processing each element once. Watch out for nested loops, as they can increase complexity.
+
+### 4. O(n log n) - Log-Linear Time
+This complexity is common in efficient sorting algorithms like mergesort and quicksort. They combine a divide-and-conquer approach (log n) with a linear amount of work at each level of division (n).
+
+- **Optimization:** Divide the data and work on each subset, then combine results. Focus on efficient merging or partitioning strategies.
+
+### 5. O(n²) - Quadratic Time
+Algorithms with nested loops over the input data, such as bubble sort or comparing each element with every other element, have quadratic time complexity.
+
+- **Optimization:** Try to avoid nested loops. Sometimes, you can replace them with more efficient data structures or algorithms (e.g., sorting and then linearly processing data).
+
+### 6. O(2^n) - Exponential Time
+Exponential algorithms, like recursive algorithms that solve all subsets of a problem (e.g., certain brute-force solutions), double the amount of work with each additional input element.
+
+- **Optimization:** Look for opportunities to cache results (memoization) or switch to a more efficient algorithm that avoids recalculating the same data.
+
+### 7. O(n!) - Factorial Time
+These are algorithms that need to calculate all possible combinations or permutations, like the brute-force solution for the traveling salesman problem.
+
+- **Optimization:** Factorial time algorithms are often impractical. Consider approximation algorithms or heuristics, and explore dynamic programming where applicable.
+
+### General Approach to Solving and Optimizing Algorithms:
+1. **Understand the Problem:** Analyze what the problem is asking and how the input size affects the algorithm.
+2. **Identify the Bottleneck:** Determine which part of your algorithm takes the most time or space.
+3. **Choose the Right Data Structures:** Sometimes, a more suitable data structure can dramatically improve performance.
+4. **Think of a Better Approach:** Consider whether a different algorithmic approach could be more efficient.
+5. **Implement and Test:** Write the code and test it with various inputs, especially large ones, to see if your optimizations have the desired effect.
+
+Remember, the goal of optimization is not always to achieve the best theoretical complexity. Sometimes, practical constraints and the specific nature of the problem must be considered, and a balance between readability, maintainability, and performance should be struck.
+
+
 ### 4. Practical Applications
 
 Understanding complexity is crucial for optimizing algorithms, especially in scenarios dealing with large data sets or requiring high efficiency. For instance, choosing a sorting algorithm in a web application or optimizing database queries in your Python projects.
