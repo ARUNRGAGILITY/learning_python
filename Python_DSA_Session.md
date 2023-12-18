@@ -540,4 +540,132 @@ def all_permutations(arr):
 print(all_permutations([1, 2, 3]))
 ```
 
+## Examples / References
 
+### Mergesort
+
+Merge Sort is a classic example of a divide-and-conquer algorithm with a time complexity of O(n log n). It divides the input array into two halves, calls itself for the two halves, and then merges the two sorted halves.
+
+Here's a simple implementation of Merge Sort in Python:
+
+```python
+def mergeSort(arr):
+    if len(arr) > 1:
+        # Finding the mid of the array
+        mid = len(arr) // 2
+
+        # Dividing the array elements into 2 halves
+        L = arr[:mid]
+        R = arr[mid:]
+
+        # Sorting the first half
+        mergeSort(L)
+
+        # Sorting the second half
+        mergeSort(R)
+
+        i = j = k = 0
+
+        # Copy data to temp arrays L[] and R[]
+        while i < len(L) and j < len(R):
+            if L[i] < R[j]:
+                arr[k] = L[i]
+                i += 1
+            else:
+                arr[k] = R[j]
+                j += 1
+            k += 1
+
+        # Checking if any element was left
+        while i < len(L):
+            arr[k] = L[i]
+            i += 1
+            k += 1
+
+        while j < len(R):
+            arr[k] = R[j]
+            j += 1
+            k += 1
+
+# Code to print the list
+def printList(arr):
+    for i in range(len(arr)):
+        print(arr[i], end=" ")
+    print()
+
+# Example usage
+arr = [12, 11, 13, 5, 6, 7]
+print("Given array is", end="\n")
+printList(arr)
+mergeSort(arr)
+print("Sorted array is: ", end="\n")
+printList(arr)
+```
+
+### How it Works:
+
+1. **Divide:** The array is divided into two halves (left and right) until it cannot be divided further (i.e., when it's reduced to a single element).
+
+2. **Conquer:** Each half of the array is sorted recursively.
+
+3. **Merge:** The sorted halves are then merged back together in a sorted manner.
+
+### Understanding Merge Sort:
+
+- **Divide and Conquer:** It breaks down the problem into smaller, more manageable sub-problems, solves them independently, and combines their results.
+- **Stability and Efficiency:** Merge Sort is stable and efficient for large data sets, but it requires additional memory for merging.
+- **Recursive:** The implementation is typically recursive, as seen in the example.
+
+This implementation gives you a basic understanding of how Merge Sort operates. The concept of dividing the array, sorting each part, and merging them is the essence of this sorting technique.
+
+
+### Quick Sort
+Quick Sort is a highly efficient sorting algorithm that uses a divide-and-conquer strategy. It selects a 'pivot' element from the array and partitions the other elements into two sub-arrays, according to whether they are less than or greater than the pivot.
+
+```python
+def quickSort(arr):
+    if len(arr) <= 1:
+        return arr
+    else:
+        pivot = arr[0]
+        less_than_pivot = [x for x in arr[1:] if x <= pivot]
+        greater_than_pivot = [x for x in arr[1:] if x > pivot]
+        return quickSort(less_than_pivot) + [pivot] + quickSort(greater_than_pivot)
+
+# Example usage
+arr = [10, 7, 8, 9, 1, 5]
+sorted_arr = quickSort(arr)
+print("Sorted array is:", sorted_arr)
+```
+
+### Bubble Sort
+Bubble Sort is a simple sorting algorithm that repeatedly steps through the list, compares adjacent elements and swaps them if they are in the wrong order. This process is repeated until the list is sorted.
+
+```python
+def bubbleSort(arr):
+    n = len(arr)
+    for i in range(n-1):
+        for j in range(0, n-i-1):
+            if arr[j] > arr[j + 1]:
+                arr[j], arr[j + 1] = arr[j + 1], arr[j]
+
+# Example usage
+arr = [64, 34, 25, 12, 22, 11, 90]
+bubbleSort(arr)
+print("Sorted array is:", arr)
+```
+
+### Understanding These Algorithms:
+
+- **Quick Sort:** 
+  - Efficient for large data sets.
+  - Average and best-case time complexity is O(n log n).
+  - Worst-case is O(n²), but this is rare.
+  - Not stable and usually uses more stack space.
+
+- **Bubble Sort:** 
+  - Simple, but not efficient for large data sets.
+  - Time complexity of O(n²) makes it impractical for larger arrays.
+  - Stable and works well with small lists or partially sorted data.
+
+These examples provide a basic understanding of how Quick Sort and Bubble Sort work. Quick Sort is generally preferred for larger or more complex datasets due to its efficiency, while Bubble Sort is more educational and used for its simplicity.
