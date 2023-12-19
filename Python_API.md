@@ -124,3 +124,123 @@ ws.close()
 ```
 
 These examples cover various aspects of working with APIs in Python. Before running them, ensure that you have the necessary libraries installed (`requests`, `websocket-client`). Also, keep in mind that APIs often require authentication, and you should handle your credentials securely.
+
+# Detailed examples
+
+Here are some detailed examples focusing on specific use cases and operations that you might encounter when working with APIs in Python. These examples will be a bit more advanced and cover real-world scenarios.
+
+### 1. Fetching and Displaying Weather Data
+Using an API to fetch weather data and parsing it.
+```python
+import requests
+
+def get_weather(city):
+    api_key = 'YOUR_API_KEY'  # Replace with your OpenWeatherMap API key
+    url = f"http://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}&units=metric"
+
+    response = requests.get(url)
+    data = response.json()
+    if response.status_code == 200:
+        weather = data['weather'][0]['description']
+        temperature = data['main']['temp']
+        print(f"Weather in {city}: {weather}, Temperature: {temperature}°C")
+    else:
+        print("Error:", response.status_code, response.json())
+
+city = input("Enter a city name: ")
+get_weather(city)
+```
+
+### 2. Paginated API Requests
+Handling APIs with pagination to fetch multiple pages of data.
+```python
+import requests
+
+def fetch_posts():
+    url = "https://jsonplaceholder.typicode.com/posts"
+    all_posts = []
+    page = 1
+
+    while True:
+        params = {'_page': page}
+        response = requests.get(url, params=params)
+        posts = response.json()
+
+        if not posts:
+            break
+
+        all_posts.extend(posts)
+        page += 1
+
+    return all_posts
+
+posts = fetch_posts()
+print(f"Total posts fetched: {len(posts)}")
+```
+
+### 3. Sending a JSON Payload with POST Request
+Sending JSON data in the request body.
+```python
+import requests
+import json
+
+url = "https://jsonplaceholder.typicode.com/posts"
+data = {"title": "Python", "body": "API example", "userId": 1}
+headers = {"Content-Type": "application/json"}
+
+response = requests.post(url, data=json.dumps(data), headers=headers)
+print(response.json())
+```
+
+### 4. Handling Timeout in Requests
+Setting a timeout for a request to avoid waiting indefinitely.
+```python
+import requests
+
+try:
+    response = requests.get('https://jsonplaceholder.typicode.com/posts', timeout=5)
+    print(response.json())
+except requests.Timeout:
+    print("The request timed out")
+```
+
+### 5. Working with REST API for CRUD Operations with Error Handling
+Performing CRUD operations with error handling.
+```python
+import requests
+
+def create_post(title, body):
+    url = "https://jsonplaceholder.typicode.com/posts"
+    response = requests.post(url, data={'title': title, 'body': body, 'userId': 1})
+    return response.json() if response.status_code == 201 else None
+
+def get_post(post_id):
+    url = f"https://jsonplaceholder.typicode.com/posts/{post_id}"
+    response = requests.get(url)
+    return response.json() if response.status_code == 200 else None
+
+def update_post(post_id, new_title):
+    url = f"https://jsonplaceholder.typicode.com/posts/{post_id}"
+    response = requests.put(url, data={'title': new_title})
+    return response.json() if response.status_code == 200 else None
+
+def delete_post(post_id):
+    url = f"https://jsonplaceholder.typicode.com/posts/{post_id}"
+    response = requests.delete(url)
+    return response.status_code == 200
+
+# Example Usage
+new_post = create_post("Sample Title", "This is a test post")
+print("Created Post:", new_post)
+
+fetched_post = get_post(1)
+print("Fetched Post:", fetched_post)
+
+updated_post = update_post(1, "Updated Title")
+print("Updated Post:", updated_post)
+
+delete_success = delete_post(1)
+print("Post Deleted:", delete_success)
+```
+
+These examples are more detailed and showcase real-world scenarios you might face when working with APIs. Install the `requests` library if you haven't already (`pip install requests`). Also, replace placeholder values like API keys and URLs with actual values from the APIs you intend to use.
