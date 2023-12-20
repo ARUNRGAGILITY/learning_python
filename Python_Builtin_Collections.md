@@ -2,6 +2,18 @@
 
 Python `collections` module:
 
+1. Counters
+2. DefaultDict
+3. OrderedDict
+4. ChainMap
+5. NamedTuple
+6. DeQue
+7. UserList
+8. UserString
+9. UserDict
+
+
+
 1. **Counter**
    - **Purpose**: Counting occurrences of elements.
    - **Practical Use Case**: Analyzing the frequency of items in a list can be useful for statistics, such as finding the most common words in a document.
