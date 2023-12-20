@@ -12,7 +12,7 @@ Python `collections` module:
 8. UserString
 9. UserDict
 
-
+Here we go through each one of them in details...
 
 1. **Counter**
    - **Purpose**: Counting occurrences of elements.
