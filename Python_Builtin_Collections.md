@@ -262,3 +262,297 @@ These examples show how each class can be used in a meaningful context, demonstr
    
    md = MyDict({'a': 1, 'b': 2})
    print(md)  # Output: {'a': 1, 'b': 2}
+
+
+# Python Built-in Collections with more examples
+
+Let's go over four practical examples for each of the nine `collections` classes.
+
+### 1. Counter
+
+**Example 1**: Counting the number of occurrences of each character in a string.
+```python
+Counter("abracadabra")
+```
+
+**Example 2**: Counting the number of occurrences of each word in a sentence.
+```python
+Counter("the quick brown fox jumps over the lazy dog".split())
+```
+
+**Example 3**: Finding the most common elements in a list.
+```python
+nums = [1, 2, 3, 4, 1, 2, 6, 7, 3, 8, 1, 2, 9]
+Counter(nums).most_common(3)
+```
+
+**Example 4**: Updating the count of elements from an iterable.
+```python
+c = Counter()
+c.update("abcdaab")
+c.update({'a': 1, 'd': 5})
+```
+
+### 2. defaultdict
+
+**Example 1**: Grouping items by a certain attribute.
+```python
+s = [('yellow', 1), ('blue', 2), ('yellow', 3), ('blue', 4), ('red', 1)]
+d = defaultdict(list)
+for k, v in s:
+    d[k].append(v)
+```
+
+**Example 2**: Counting items in a list.
+```python
+s = 'mississippi'
+d = defaultdict(int)
+for k in s:
+    d[k] += 1
+```
+
+**Example 3**: Building a multidimensional array.
+```python
+dd = defaultdict(lambda: defaultdict(int))
+dd[0][1] = 1
+```
+
+**Example 4**: Caching results of a function.
+```python
+def retrieve_user(id):
+    return f"User{id}"
+
+cache = defaultdict(retrieve_user)
+cache[10]
+cache[23]
+```
+
+### 3. OrderedDict
+
+**Example 1**: Remembering the order of items added to a dictionary.
+```python
+d = OrderedDict()
+d['foo'] = 100
+d['bar'] = 200
+d['baz'] = 300
+```
+
+**Example 2**: Reordering dictionary items.
+```python
+d = OrderedDict.fromkeys('abcde')
+d.move_to_end('b')
+```
+
+**Example 3**: Reverse iteration.
+```python
+for key in reversed(d):
+    print(key, d[key])
+```
+
+**Example 4**: Creating a Last Recently Used (LRU) cache.
+```python
+class LRU(OrderedDict):
+    def __init__(self, maxsize=128, *args, **kwds):
+        super().__init__(*args, **kwds)
+        self.maxsize = maxsize
+
+    def __getitem__(self, key):
+        value = super().__getitem__(key)
+        self.move_to_end(key)
+        return value
+```
+
+### 4. ChainMap
+
+**Example 1**: Searching through multiple scopes (like variable scopes in functions).
+```python
+local_scope = {'x': 1}
+global_scope = {'x': 2, 'y': 3}
+chain = ChainMap(local_scope, global_scope)
+```
+
+**Example 2**: Command-line argument parsing fallbacks.
+```python
+defaults = {'color': 'red', 'user': 'guest'}
+parsed_args = {'user': 'admin', 'password': 'admin'}
+config = ChainMap(parsed_args, defaults)
+```
+
+**Example 3**: Context switching (such as between different configuration settings).
+```python
+contexts = ChainMap()
+contexts['development'] = {'mode': 'dev', 'debug': True}
+contexts['production'] = {'mode': 'prod', 'debug': False}
+```
+
+**Example 4**: Merging dictionaries for configurations.
+```python
+dict1 = {'apple': 1, 'banana': 2}
+dict2 = {'berry': 3, 'orange': 4, 'apple': 0}
+merged = ChainMap(dict1, dict2)
+```
+
+### 5. namedtuple
+
+**Example 1**: Representing a point in a 2D coordinate system.
+```python
+Point = namedtuple('Point', ['x', 'y'])
+p1 = Point(10, 20)
+p2 = Point(30, 40)
+```
+
+**Example 2**: Storing data from a CSV file.
+```python
+Employee = namedtuple('Employee', 'name, age, department')
+emp1 = Employee('John Doe', 30, 'Marketing')
+```
+
+**Example 3**: As a return type for a function instead of a dictionary.
+```python
+def get_dimensions():
+    Dimension = namedtuple('Dimension', 'width height')
+    return Dimension(1024, 768)
+```
+
+**Example 4**: Using as a more readable alternative to tuples.
+```python
+Color = namedtuple('Color', 'red green blue')
+color =
+
+ Color(55, 155, 255)
+```
+
+### 6. deque
+
+**Example 1**: Implementing a queue.
+```python
+q = deque()
+q.append('eat')
+q.append('sleep')
+q.append('code')
+```
+
+**Example 2**: Implementing a stack.
+```python
+stack = deque()
+stack.appendleft('eat')
+stack.appendleft('sleep')
+stack.appendleft('code')
+```
+
+**Example 3**: Keeping a list of last seen items.
+```python
+history = deque(maxlen=5)
+for i in range(10):
+    history.append(i)
+```
+
+**Example 4**: Rotating elements.
+```python
+d = deque(range(5))
+d.rotate(2)  # Rotates the deque by n steps to the right
+```
+
+### 7. UserList
+
+**Example 1**: Creating a list that can only store integers.
+```python
+class IntegerList(UserList):
+    def append(self, item):
+        if not isinstance(item, int):
+            raise TypeError("Only integers are allowed")
+        super().append(item)
+```
+
+**Example 2**: A list with logging on item addition.
+```python
+class LoggingList(UserList):
+    def append(self, item):
+        print(f"Adding item {item}")
+        super().append(item)
+```
+
+**Example 3**: A list where duplicate values are not allowed.
+```python
+class UniqueList(UserList):
+    def append(self, item):
+        if item not in self.data:
+            super().append(item)
+```
+
+**Example 4**: A list with a custom method for computing the sum.
+```python
+class SummableList(UserList):
+    def get_sum(self):
+        return sum(self.data)
+```
+
+### 8. UserString
+
+**Example 1**: A string that can't be modified.
+```python
+class ImmutableString(UserString):
+    def __setitem__(self, key, value):
+        raise TypeError("This string is immutable")
+```
+
+**Example 2**: A string with a method for removing vowels.
+```python
+class NoVowelsString(UserString):
+    def remove_vowels(self):
+        for vowel in 'aeiouAEIOU':
+            self.data = self.data.replace(vowel, '')
+```
+
+**Example 3**: A string that tracks how many times it has been modified.
+```python
+class CountedString(UserString):
+    def __init__(self, seq):
+        super().__init__(seq)
+        self.modifications = 0
+    
+    def __setitem__(self, key, value):
+        super().__setitem__(key, value)
+        self.modifications += 1
+```
+
+**Example 4**: A string that converts to uppercase when accessed.
+```python
+class LoudString(UserString):
+    def __getitem__(self, key):
+        return super().__getitem__(key).upper()
+```
+
+### 9. UserDict
+
+**Example 1**: A dictionary that doesn't allow deletion.
+```python
+class NonDeletableDict(UserDict):
+    def __delitem__(self, key):
+        raise TypeError("Deletion not allowed")
+```
+
+**Example 2**: A dictionary with keys always stored as lowercase.
+```python
+class LowercaseDict(UserDict):
+    def __setitem__(self, key, value):
+        super().__setitem__(key.lower(), value)
+```
+
+**Example 3**: A dictionary that logs accesses to its items.
+```python
+class LoggingDict(UserDict):
+    def __getitem__(self, key):
+        print(f"Accessing {key}")
+        return super().__getitem__(key)
+```
+
+**Example 4**: A dictionary that automatically initializes missing keys.
+```python
+class AutoInitDict(UserDict):
+    def __missing__(self, key):
+        self[key] = AutoInitDict()
+        return self[key]
+```
+
+These examples demonstrate various ways you can use the specialized collection classes from Python's `collections` module to simplify your code and implement functionality efficiently.
