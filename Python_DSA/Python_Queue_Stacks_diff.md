@@ -9,7 +9,7 @@ A queue and a stack are both abstract data types (ADTs) that are used in compute
   - **Pop**: Remove the element from the top of the stack.
 - **Use Cases**: Undo mechanisms in text editors, call stack in programming languages, parsing expressions in compilers, etc.
 - **Example**: Consider a stack of plates; you can only take the top plate off the stack, and when adding more plates, you place them on the top of the stack.
-
+![Alt text](image-1.png)
 ### Queue:
 - **FIFO**: Queue is a First In First Out (FIFO) structure. This means that the first element added to the queue will be the first one to be removed.
 - **Operations**:
@@ -17,7 +17,7 @@ A queue and a stack are both abstract data types (ADTs) that are used in compute
   - **Dequeue**: Remove the element from the front of the queue.
 - **Use Cases**: Print queues, task scheduling, breadth-first search in graphs, serving requests on a single shared resource like a printer, etc.
 - **Example**: Consider a line of people at a ticket counter; the first person in the line is the first to get served and leave the line.
-
+![Alt text](image.png)
 ### Summary of Differences:
 
 | Aspect     | Stack          | Queue          |
