@@ -85,3 +85,60 @@ Replace `script_name.py` with the name of your Python script file and `/path/to/
 **Note**:
 - The script expects the path as the first argument (`sys.argv[1]`). If no argument is provided, it will prompt the user to provide a directory path and then exit.
 - Ensure that you have the necessary permissions to read the files and directories you are scanning.
+
+
+# Project2: Reading Excel file
+
+To read an Excel file and summarize data based on date and expense amount, you can use the `pandas` library in Python, which is a powerful tool for data manipulation and analysis. Here's a step-by-step guide:
+
+### Step 1: Install Pandas and Openpyxl
+First, ensure you have `pandas` and `openpyxl` installed, as `openpyxl` is needed for reading Excel files (.xlsx). You can install them via pip if you haven't already:
+
+```bash
+pip install pandas openpyxl
+```
+
+### Step 2: Read the Excel File
+Use `pandas` to read the Excel file. Assume your Excel file has columns named "Date" and "Expense Amount".
+
+### Step 3: Summarize Data
+Group the data by date and sum up the expense amounts for each date.
+
+### Example Code:
+
+```python
+import pandas as pd
+
+def summarize_expenses(file_path):
+    # Read the Excel file
+    df = pd.read_excel(file_path)
+
+    # Ensure the date column is in datetime format
+    df['Date'] = pd.to_datetime(df['Date'])
+
+    # Summarize expense by date
+    summary = df.groupby(df['Date']).sum()
+
+    return summary
+
+# Replace 'your_file.xlsx' with your Excel file path
+summary = summarize_expenses('your_file.xlsx')
+print(summary)
+```
+
+#### excel file contents
+|    Date    | Expense Amount |
+|------------|----------------|
+| 2023-01-01 |           150  |
+| 2023-01-01 |           200  |
+| 2023-01-02 |           100  |
+| 2023-01-03 |           250  |
+
+
+This script will read the Excel file, group the expenses by date, and print the sum of expenses for each date.
+
+**Note:**
+- Replace `'your_file.xlsx'` with the actual path to your Excel file.
+- Ensure your Excel file has the columns "Date" and "Expense Amount". The names should match exactly, or you'll need to adjust the column names in the script accordingly.
+- This script assumes that the "Date" column is in a recognizable date format. If your dates are in a different format, you might need to parse them accordingly using `pd.to_datetime` with the appropriate format string.
+- If your Excel file has headers in the first row, `pandas` will automatically use them. If not, you can specify headers using the `header` parameter in `pd.read_excel`.
