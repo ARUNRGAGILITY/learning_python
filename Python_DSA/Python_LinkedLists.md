@@ -164,6 +164,12 @@ class LinkedList:
             current = current.next
         print("None")
 
+    def __iter__(self):
+        current = self.head
+        while current:
+            yield current.data
+            current = current.next
+
 # Usage
 llist = LinkedList()
 llist.append(10)
@@ -171,7 +177,8 @@ llist.append(20)
 llist.prepend(5)
 llist.insert_after_node(llist.head.next, 15)
 llist.display()  # Output: 5 -> 10 -> 15 -> 20 -> None
-
+for data in llist:
+    print(data)
 ```
 ### Python LinkedLists with collections deque
 ```python
