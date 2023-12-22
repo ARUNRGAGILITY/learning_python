@@ -34,6 +34,11 @@ class Node:
 
 #### Simple LinkedList Implementation
 ```python
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
 class LinkedList:
     def __init__(self):
         self.head = None
@@ -47,13 +52,129 @@ class LinkedList:
             last = last.next
         last.next = Node(data)
 
+    def prepend(self, data):
+        new_node = Node(data)
+        new_node.next = self.head
+        self.head = new_node
+
+    def delete_node(self, key):
+        current = self.head
+        if current and current.data == key:
+            self.head = current.next
+            current = None
+            return
+        prev = None
+        while current and current.data != key:
+            prev = current
+            current = current.next
+        if current is None:
+            return
+        prev.next = current.next
+        current = None
+
+    def search(self, key):
+        current = self.head
+        while current:
+            if current.data == key:
+                return True
+            current = current.next
+        return False
+
+    def insert_after_node(self, prev_node, data):
+        if not prev_node:
+            print("Previous node is not in the list")
+            return
+        new_node = Node(data)
+        new_node.next = prev_node.next
+        prev_node.next = new_node
+
+    def delete_list(self):
+        current = self.head
+        while current:
+            prev = current.next
+            del current.data
+            current = prev
+        self.head = None
+
+    def length(self):
+        count = 0
+        current = self.head
+        while current:
+            count += 1
+            current = current.next
+        return count
+
+    def reverse(self):
+        prev = None
+        current = self.head
+        while current:
+            nxt = current.next
+            current.next = prev
+            prev = current
+            current = nxt
+        self.head = prev
+
+    def has_cycle(self):
+        slow = self.head
+        fast = self.head
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+            if slow == fast:
+                return True
+        return False
+
+    def merge_sorted(self, llist):
+        p = self.head
+        q = llist.head
+        s = None
+
+        if not p:
+            return q
+        if not q:
+            return p
+
+        if p and q:
+            if p.data <= q.data:
+                s = p
+                p = s.next
+            else:
+                s = q
+                q = s.next
+            new_head = s
+        while p and q:
+            if p.data <= q.data:
+                s.next = p
+                s = p
+                p = s.next
+            else:
+                s.next = q
+                s = q
+                q = s.next
+        if not p:
+            s.next = q
+        if not q:
+            s.next = p
+        return new_head
+
     def display(self):
         current = self.head
         while current:
             print(current.data, end=" -> ")
             current = current.next
         print("None")
+
+# Usage
+llist = LinkedList()
+llist.append(10)
+llist.append(20)
+llist.prepend(5)
+llist.insert_after_node(llist.head.next, 15)
+llist.display()  # Output: 5 -> 10 -> 15 -> 20 -> None
+
 ```
+
+
 
 ### 10 Examples: Why, What, and How of LinkedLists
 
