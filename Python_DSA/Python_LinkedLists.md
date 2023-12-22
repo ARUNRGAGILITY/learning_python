@@ -402,3 +402,146 @@ def merge_sorted(self, llist):
 ```
 
 These examples provide a basic understanding of how linked lists function in Python and demonstrate their utility in various scenarios. Remember, these implementations are basic and can be extended or modified for more complex applications.
+
+##  Using the LinkedList to create Stacks and Queues
+We can utilize the `LinkedList` class to implement both stack and queue data structures. Stacks and queues are abstract data types that represent a collection of elements with specific rules for adding and removing elements.
+
+### Stack
+A stack is a Last In, First Out (LIFO) data structure. The last element added is the first one to be removed. We can use the `append` method to 'push' elements onto the stack and the linked list's inherent nature to 'pop' the last element.
+
+#### Stack Implementation Using LinkedList
+```python
+class Stack:
+    def __init__(self):
+        self.linked_list = LinkedList()
+
+    def push(self, item):
+        self.linked_list.append(item)
+
+    def pop(self):
+        if self.linked_list.head is None:
+            return None
+        current = self.linked_list.head
+        if current.next is None:
+            item = current.data
+            self.linked_list.head = None
+            return item
+        while current.next.next:
+            current = current.next
+        item = current.next.data
+        current.next = None
+        return item
+
+    def peek(self):
+        if self.linked_list.head is None:
+            return None
+        current = self.linked_list.head
+        while current.next:
+            current = current.next
+        return current.data
+
+    def display(self):
+        self.linked_list.display()
+```
+
+### Queue
+A queue is a First In, First Out (FIFO) data structure. The first element added is the first one to be removed. We can use the `append` method to 'enqueue' elements to the end of the list and modify the `LinkedList` class to 'dequeue' elements from the beginning.
+
+#### Queue Implementation Using LinkedList
+```python
+class Queue:
+    def __init__(self):
+        self.linked_list = LinkedList()
+
+    def enqueue(self, item):
+        self.linked_list.append(item)
+
+    def dequeue(self):
+        if self.linked_list.head is None:
+            return None
+        item = self.linked_list.head.data
+        self.linked_list.head = self.linked_list.head.next
+        return item
+
+    def peek(self):
+        if self.linked_list.head is None:
+            return None
+        return self.linked_list.head.data
+
+    def display(self):
+        self.linked_list.display()
+```
+
+### Examples
+
+#### Stack Examples
+1. **Pushing Items**
+   ```python
+   stack = Stack()
+   stack.push(1)
+   stack.push(2)
+   stack.push(3)
+   stack.display()  # Output: 1 -> 2 -> 3 -> None
+   ```
+
+2. **Popping Item**
+   ```python
+   print(stack.pop())  # Output: 3
+   stack.display()  # Output: 1 -> 2 -> None
+   ```
+
+3. **Peeking at the Top Item**
+   ```python
+   print(stack.peek())  # Output: 2
+   ```
+
+4. **Pushing More Items**
+   ```python
+   stack.push(4)
+   stack.push(5)
+   stack.display()  # Output: 1 -> 2 -> 4 -> 5 -> None
+   ```
+
+5. **Popping Until Empty**
+   ```python
+   while item := stack.pop():
+       print(item, end=' ')
+   # Output: 5 4 2 1
+   ```
+
+#### Queue Examples
+1. **Enqueuing Items**
+   ```python
+   queue = Queue()
+   queue.enqueue(1)
+   queue.enqueue(2)
+   queue.enqueue(3)
+   queue.display()  # Output: 1 -> 2 -> 3 -> None
+   ```
+
+2. **Dequeuing Item**
+   ```python
+   print(queue.dequeue())  # Output: 1
+   queue.display()  # Output: 2 -> 3 -> None
+   ```
+
+3. **Peeking at the First Item**
+   ```python
+   print(queue.peek())  # Output: 2
+   ```
+
+4. **Enqueuing More Items**
+   ```python
+   queue.enqueue(4)
+   queue.enqueue(5)
+   queue.display()  # Output: 2 -> 3 -> 4 -> 5 -> None
+   ```
+
+5. **Dequeuing Until Empty**
+   ```python
+   while item := queue.dequeue():
+       print(item, end=' ')
+   # Output: 2 3 4 5
+   ```
+
+These examples demonstrate the basic operations of stacks and queues using the `LinkedList` class. These structures are versatile and form the basis of many more complex data structures and algorithms.
