@@ -173,8 +173,52 @@ llist.insert_after_node(llist.head.next, 15)
 llist.display()  # Output: 5 -> 10 -> 15 -> 20 -> None
 
 ```
+### Python LinkedLists with collections deque
+```python
+from collections import deque
+
+class LinkedList:
+    def __init__(self):
+        self.data = deque()
+
+    def append(self, value):
+        """ Append an element to the end of the list """
+        self.data.append(value)
+
+    def prepend(self, value):
+        """ Prepend an element to the beginning of the list """
+        self.data.appendleft(value)
+
+    def remove(self, value):
+        """ Remove the first occurrence of the value """
+        try:
+            self.data.remove(value)
+        except ValueError:
+            print("Value not found in the list.")
+
+    def display(self):
+        """ Display the elements of the list """
+        for item in self.data:
+            print(item, end=' -> ')
+        print('None')
+
+    def reverse(self):
+        """ Reverse the list """
+        self.data = deque(reversed(self.data))
+
+# Example usage
+ll = LinkedList()
+ll.append(1)
+ll.append(2)
+ll.prepend(0)
+ll.display()  # Output: 0 -> 1 -> 2 -> None
+ll.remove(1)
+ll.display()  # Output: 0 -> 2 -> None
+ll.reverse()
+ll.display()  # Output: 2 -> 0 -> None
 
 
+```
 
 ### 10 Examples: Why, What, and How of LinkedLists
 
