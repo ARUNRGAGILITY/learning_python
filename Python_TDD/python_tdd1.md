@@ -20,8 +20,6 @@ The key benefits of TDD include:
 - **Documentation**: Tests serve as a form of documentation that describes what the code is supposed to do.
 
 TDD is a core practice in Agile methodologies and is widely used in various forms of software development.
-![image](https://github.com/ARUNRGAGILITY/learning_python/assets/96728746/3944789d-18ae-4a42-88fb-0d9cdb6df8e5)
-
 
 
 ### 1. Set Up Your Environment
