@@ -4,6 +4,7 @@
 
 #### Question 1
 How do you create a dictionary called `mydict` that stores {'name': 'John', 'age': 30}?
+
 a) `mydict = {'name': 'John', 'age': 30}`  
 b) `mydict = dict('name': 'John', 'age': 30)`  
 c) `mydict = dict(['name', 'John'], ['age', 30])`  
