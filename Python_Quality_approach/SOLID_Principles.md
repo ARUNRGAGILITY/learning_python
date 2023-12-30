@@ -49,6 +49,12 @@ class UserDataBase:
         pass  # Save user data
 ```
 
+**Violation:**
+In the original `User` class, the class has two responsibilities: managing user data and interacting with the database. This violates SRP as the class is responsible for more than one operation.
+
+**Resolution:**
+In the refactored code, the responsibilities are separated into two classes. The `User` class is responsible for user-related data, and the `UserDataBase` class handles database operations. This separation ensures that each class has only one reason to change, adhering to the SRP.
+
 ### Open/Closed Principle (OCP)
 
 **Violation Example:**
@@ -87,6 +93,12 @@ def calculate_area(shapes):
     return sum(shape.area() for shape in shapes)
 ```
 
+**Violation:**
+The `calculate_area` function violates OCP because it needs to be modified every time a new shape is added. This is evident from the `if isinstance(shape, Rectangle)` check, which is not scalable for multiple shapes.
+
+**Resolution:**
+By introducing an abstract class `Shape` with an `area` method, the `calculate_area` function can now operate on any shape that implements the `Shape` interface. This means new shapes can be added without modifying the existing code, keeping it open for extension but closed for modification.
+
 ### Liskov Substitution Principle (LSP)
 
 **Violation Example:**
@@ -115,6 +127,12 @@ class Ostrich(Bird):
     def move(self):
         return "I can run!"
 ```
+
+**Violation:**
+The original example violates LSP because `Ostrich`, a subclass of `Bird`, cannot be used interchangeably with its superclass, as ostriches cannot fly. This breaks the contract established by the superclass.
+
+**Resolution:**
+The refactored code introduces an abstract method `move` in the base class `Bird` and differentiates between flying and non-flying birds. This way, subclasses like `FlyingBird` and `Ostrich` can provide their own implementations of movement, ensuring they can be used interchangeably without breaking the functionality.
 
 ### Interface Segregation Principle (ISP)
 
@@ -155,6 +173,11 @@ class Human(Workable, Eatable):
         print("Eating lunch")
 ```
 
+**Violation:**
+The original `Worker` interface forces the `Human` class to implement both `work` and `eat` methods. This is a violation of ISP because not all workers may need the `eat` method.
+
+**Resolution:**
+The refactored code separates the responsibilities into two interfaces: `Workable` and `Eatable`. The `Human` class implements both interfaces, but other classes can choose to implement only the interfaces they need, thus adhering to ISP.
 ### Dependency Inversion Principle (DIP)
 
 **Violation Example:**
@@ -211,6 +234,14 @@ class ElectricPowerSwitch:
             self.device.turn_on()
             self.on = True
 ```
+
+
+**Violation:**
+The original `ElectricPowerSwitch` class is directly dependent on the `LightBulb` class. This high-level module is dependent on a low-level module, which goes against DIP.
+
+**Resolution:**
+In the refactored code, both `ElectricPowerSwitch` and `LightBulb` depend on the `Switchable` abstraction. This decouples the high-level module (the switch) from the low-level module (the light bulb), adhering to DIP. The switch class is no longer dependent on the light bulb class but on the `Switchable` interface, allowing for greater flexibility and easier testing.
+
 
 Each example demonstrates a specific SOLID principle in a Pythonic context. 
 While these are simple illustrations, the principles can be applied to more complex and real-world scenarios.
