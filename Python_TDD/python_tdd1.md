@@ -1,4 +1,27 @@
+# Test Driven Development (TDD)
+
 Test-Driven Development (TDD) is a software development approach where tests are written before writing the functional code. It follows a cycle of writing a test, ensuring it fails (since the functionality isn't implemented yet), writing the minimal code to pass the test, and then refactoring the code. Here's a step-by-step guide to TDD in Python, using a simple example:
+
+The TDD cycle, or Test-Driven Development cycle, is a software development approach where tests are written before the actual code. It's based on a simple, repetitive cycle called "Red-Green-Refactor." Here's a breakdown of each step:
+
+1. **Write a Test**: Start by writing a test for a new function or feature. This test will initially fail, as the functionality it tests does not yet exist. This is the "Red" phase, indicating that tests are failing.
+
+2. **Write the Minimum Amount of Code to Pass the Test**: Write just enough code to make the test pass. This is the "Green" phase, where the focus is on getting a passing test, which validates that the new functionality works as expected.
+
+3. **Refactor the Code**: Now that the test is passing, look at the code and consider how it can be improved without changing its behavior. This might involve removing duplication, improving readability, or applying design patterns. Refactoring ensures that the codebase is clean and maintainable.
+
+4. **Repeat**: Go back to step 1 and start the cycle again with a new test.
+
+The key benefits of TDD include:
+
+- **Early bug detection**: Since tests are written first, issues are identified early in the development process.
+- **Improved Code Quality**: Regular refactoring helps maintain a high standard of code.
+- **Better Design**: TDD encourages developers to think about the design and structure of their code, often leading to more modular and flexible code.
+- **Documentation**: Tests serve as a form of documentation that describes what the code is supposed to do.
+
+TDD is a core practice in Agile methodologies and is widely used in various forms of software development.
+![Uploading image.png…]()
+
 
 ### 1. Set Up Your Environment
 
