@@ -35,7 +35,7 @@ print(f"Integer values: ",a,b)
 print(f"Float Values: {c} and {d}")
 print(f"Complex Number: {cnum}")
 print(f"String variable: {my_name}")
-print(f"{my_name} is a contractor {is_contractor} and not an employee {is_employee}")
+print(f"{my_name} is a contractor {is_contractor} and an employee {is_employee}")
 print(f"=====================")
 ```
 
