@@ -75,4 +75,14 @@ string
 """
 print(f"Multiline string example: {m_string}")
 
+
+# adding multiline with fstring format
+my_name = "John"
+m_string = f"""
+this is a multi
+line
+string
+my name {my_name}
+"""
+print(f"Multiline string example: {m_string}")
 ```
