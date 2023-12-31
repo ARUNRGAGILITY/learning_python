@@ -15,7 +15,8 @@ b_num = 20
 c_str = "John"
 d_str = "Arjun"
 print("This is a sample print statement ", a_num,b_num,c_str,d_str)
-
+# expressions
+print("This is a sample print statement ", a_num + b_num,c_str,d_str)
 ```
 ## Python basic Data types
 ### Basic data types are int, float, complex numbers, string
