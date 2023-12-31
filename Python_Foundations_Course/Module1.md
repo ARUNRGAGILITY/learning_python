@@ -28,6 +28,15 @@ cnum = 5 + 3j
 my_name = "John Star"
 is_contractor = True
 is_employee = False
+
+# printing the values
+print(f"=====================")
+print(f"Integer values: ",a,b)
+print(f"Float Values: {c} and {d}")
+print(f"Complex Number: {cnum}")
+print(f"String variable: {my_name}")
+print(f"{my_name} is a contractor {is_contractor} and not an employee {is_employee}")
+print(f"=====================")
 ```
 
 ## Python Input Statements
