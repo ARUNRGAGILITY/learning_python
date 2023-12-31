@@ -19,7 +19,7 @@ print("This is a sample print statement ", a_num,b_num,c_str,d_str)
 print("This is a sample print statement ", a_num + b_num,c_str,d_str)
 ```
 ## Python basic Data types
-### Basic data types are int, float, complex numbers, string
+### Basic data types are int, float, complex numbers, string, and boolean
 ```python
 a = 10
 b = 30
