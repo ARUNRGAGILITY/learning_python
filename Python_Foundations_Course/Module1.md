@@ -58,6 +58,10 @@ a = 10
 b = 20
 if a == b :
   print(f" a is equal to b")
+  if a != b :
+    print("another if statement")
+  else:
+    print("another else statement")
 else:
   print(f" a is not equal to b")
 ```
