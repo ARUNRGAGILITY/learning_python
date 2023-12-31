@@ -33,7 +33,7 @@ is_employee = False
 ## Python Input Statements
 ```python
 user_input_name = str(input("Enter your name: "))
-print(f"You have entered: {user_input_name})
+print(f"You have entered: {user_input_name}")
 ```
 
 ## Python Comments
