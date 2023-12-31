@@ -38,7 +38,7 @@ print(f"You have entered: {user_input_name})
 
 ## Python Comments
 
-Python comments start with '#' at the beginning
+Python comments start with '#' at the beginning, as shown in the earlier examples in this module.
 
 ## Python Programs
 Python programs are written with indentation, as follows
@@ -50,4 +50,15 @@ if a == b :
   print(f" a is equal to b")
 else:
   print(f" a is not equal to b")
+```
+
+## Python multiline string
+```python
+m_string = """
+this is a multi
+line
+string
+"""
+print(f"Multiline string example: {m_string}")
+
 ```
