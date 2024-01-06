@@ -4,6 +4,12 @@
 ```python
 # Python output statement using print function/statement
 my_name = "Arjun"
+my_message = """
+1. This is a multiline message
+2. can be printed asis by the python print function/statement
+3. Can help to define multiline string for various purposes
+4. Can add the variables like my_name: {my_name} will print the my_name string
+"""
 # printing using double-quotes, single-quote, f-string, and comma options
 print("Hello World!")
 print('Hello World!')
