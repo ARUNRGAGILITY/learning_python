@@ -157,3 +157,70 @@ Threading is a technique for concurrent execution of multiple threads (mini-proc
 ### Conclusion
 
 Threading in Python is a powerful feature, especially for I/O-bound applications. However, it's important to understand its limitations and complexities. For CPU-bound tasks, consider using multiprocessing or asynchronous programming (asyncio) which bypasses the GIL and allows for actual parallel execution of tasks.
+
+
+# A simple HTTP server
+
+Creating a simple HTTP server using Python threads involves using the `http.server` module for the HTTP server functionality and the `threading` module to handle each request in a separate thread. This allows the server to handle multiple requests concurrently.
+
+Here's a complete implementation of a simple threaded HTTP server:
+
+```python
+import http.server
+import socketserver
+import threading
+
+# Define the handler for HTTP requests
+class ThreadedHTTPHandler(http.server.SimpleHTTPRequestHandler):
+    def do_GET(self):
+        # This method can be customized to handle GET requests
+        # Currently, it just serves files from the current directory
+        self.send_response(200)
+        self.send_header("Content-type", "text/html")
+        self.end_headers()
+        self.wfile.write(bytes("<html><head><title>Title goes here.</title></head>", "utf-8"))
+        self.wfile.write(bytes("<body><p>This is a test.</p>", "utf-8"))
+        self.wfile.write(bytes("<p>You accessed path: %s</p>" % self.path, "utf-8"))
+        self.wfile.write(bytes("</body></html>", "utf-8"))
+
+# Threaded class for handling requests
+class ThreadedHTTPServer(socketserver.ThreadingMixIn, http.server.HTTPServer):
+    """Handle requests in a separate thread."""
+
+# Specify the IP address and port number for the server
+# You can use '' for the address to bind to all available interfaces
+HOST, PORT = '', 8000
+
+# Create the server object
+server = ThreadedHTTPServer((HOST, PORT), ThreadedHTTPHandler)
+
+# Start the server
+try:
+    print(f"Server started at http://{HOST}:{PORT}")
+    server.serve_forever()
+except KeyboardInterrupt:
+    pass
+finally:
+    server.server_close()
+    print("Server stopped.")
+```
+
+### How It Works:
+1. **ThreadedHTTPHandler:** This class inherits from `SimpleHTTPRequestHandler` and handles HTTP requests. You can customize the `do_GET` method to implement how GET requests are handled.
+
+2. **ThreadedHTTPServer:** This class is a combination of `ThreadingMixIn`, which adds thread-based concurrency, and `HTTPServer`, which handles HTTP requests.
+
+3. **Running the Server:** The server is started on the specified host and port. Each incoming request is handled in a separate thread.
+
+### Usage:
+- Run this script in a Python environment.
+- Open a web browser and navigate to `http://localhost:8000` or the respective host and port if you've changed them.
+- The server will respond with a simple HTML page.
+
+### Customization:
+- You can customize the `do_GET` method in the `ThreadedHTTPHandler` class to handle GET requests differently, such as serving different content or processing query parameters.
+- For additional HTTP methods like POST, PUT, etc., you can implement corresponding methods (e.g., `do_POST`) in the `ThreadedHTTPHandler` class.
+
+### Note:
+- This is a basic server intended for learning and local testing. It's not recommended for production use due to lack of security features and robust error handling.
+- Always ensure you have the appropriate permissions to run servers, especially if binding to public-facing network interfaces.
